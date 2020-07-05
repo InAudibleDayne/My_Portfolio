@@ -15,7 +15,7 @@ export default function() {
             <div className="right-column">
                 <div className="name">Dayne J. Bechtold</div>
                 <div className="bio">
-                This is my Portfolio which I built during my coding course. I will be uploading a finalized version of my portfolio once I have completed my course.
+                    
                 </div>
             </div>
         </div>
