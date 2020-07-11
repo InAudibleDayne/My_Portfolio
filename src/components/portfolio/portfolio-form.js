@@ -13,7 +13,7 @@ export default class PortfolioForm extends Component {
       name: "",
       description: "",
       url: "",
-      category: "eCommerce",
+      category: "Front-End",
       position: "",
       thumb_image: "",
       banner_image: "",
@@ -68,7 +68,7 @@ export default class PortfolioForm extends Component {
         id: id,
         name: name || "",
         description: description || "",
-        category: category || "eCommerce",
+        category: category || "Front-End",
         position: position || "",
         url: url || "",
         editMode: true,
@@ -162,7 +162,7 @@ export default class PortfolioForm extends Component {
           name: "",
           description: "",
           url: "",
-          category: "eCommerce",
+          category: "Front-End",
           position: "",
           thumb_image: "",
           banner_image: "",
@@ -217,9 +217,9 @@ export default class PortfolioForm extends Component {
             value={this.state.category}
             onChange={this.handleChange}
           >
-            <option value="eCommerce">eCommerce</option>
-            <option value="Scheduling">Scheduling</option>
-            <option value="Enterprise">Enterprise</option>
+            <option value="Front-End">Front-End</option>
+            <option value="Back-End">Back-End</option>
+            <option value="Full-Stack">Full-Stack</option>
           </select>
         </div>
 
