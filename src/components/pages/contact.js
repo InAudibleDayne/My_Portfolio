@@ -36,7 +36,7 @@ export default function() {
                             <FontAwesomeIcon icon="map-marked-alt" />
                         </div>
                         <div className="text">
-                            Bluffdale, UT
+                            Herriman, UT
                         </div>
                     </div>
                 </div>
