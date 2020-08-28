@@ -26,7 +26,7 @@ export default class Login extends Component {
   handleSubmit(event) {
     axios
       .post(
-        "https://api.devcamp.space/sessions",
+        "http://localhost:8080/auth",
         {
           client: {
             email: this.state.email,

@@ -19,7 +19,8 @@ export default class PortfolioForm extends Component {
       banner_image: "",
       logo: "",
       editMode: false,
-      apiUrl: "https://daynebechtold.devcamp.space/portfolio/portfolio_items",
+      apiUrl: "http://localhost:8080/posts/",
+      //https://daynebechtold.devcamp.space/portfolio/portfolio_items
       apiAction: "post"
     };
 
