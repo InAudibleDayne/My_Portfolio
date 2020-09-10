@@ -34,12 +34,12 @@ export default class PortfolioManager extends Component {
 
     handleDeleteClick(portfolioItem) {
         axios.delete(
-            `https://api.devcamp.space/portfolio/portfolio_items/${portfolioItem.id}`, 
+            `http://localhost:8080/posts/${portfolioItem._id}`, 
             { withCredentials: true }
             ).then(response => {
                 this.setState({
                     portfolioItems: this.state.portfolioItems.filter(item => {
-                        return item.id !== portfolioItem.id;
+                        return item.id !== portfolioItem._id;
                     })
                 })
 
@@ -64,7 +64,7 @@ export default class PortfolioManager extends Component {
     }
 
     getPortfolioItems() {
-        axios.get("https://daynebechtold.devcamp.space/portfolio/portfolio_items?order_by=created_at&direction=desc", {
+        axios.get("http://localhost:8080/posts", {
             withCredentials: true
         }).then(response => {
             this.setState({

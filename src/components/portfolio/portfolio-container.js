@@ -18,7 +18,7 @@ export default class PortfolioContainer extends Component {
 
   getPortfolioItems(filter = null) {
     axios
-      .get('https://daynebechtold.devcamp.space/portfolio/portfolio_items')
+      .get('http://localhost:8080/posts')
       .then(response => {
         if (filter) {
           this.setState({
@@ -48,7 +48,7 @@ export default class PortfolioContainer extends Component {
     return this.state.data.map(item => {
         return (
             <PortfolioItem 
-                key={item.id} 
+                key={item._id} 
                 item={item}
             />
         );

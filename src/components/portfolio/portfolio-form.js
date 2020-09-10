@@ -10,6 +10,7 @@ export default class PortfolioForm extends Component {
     super(props);
 
     this.state = {
+      _id: '',
       name: "",
       description: "",
       url: "",
@@ -52,7 +53,7 @@ export default class PortfolioForm extends Component {
   componentDidUpdate() {
     if (Object.keys(this.props.portfolioToEdit).length > 0) {
       const {
-        id, 
+        _id, 
         name,
         description,
         category,
@@ -66,14 +67,14 @@ export default class PortfolioForm extends Component {
       this.props.clearPortfolioToEdit();
 
       this.setState({
-        id: id,
+        _id: _id,
         name: name || "",
         description: description || "",
         category: category || "Front-End",
         position: position || "",
         url: url || "",
         editMode: true,
-        apiUrl: `https://daynebechtold.devcamp.space/portfolio/portfolio_items/${id}`,
+        apiUrl: `http://localhost:8080/posts/${_id}`,
         apiAction: "patch",
         thumb_image_url: thumb_image_url || "",
         banner_image_url: banner_image_url || "",
@@ -146,6 +147,7 @@ export default class PortfolioForm extends Component {
   }
 
   handleSubmit(event) {
+    console.log(this.buildForm());
     axios({
       method: this.state.apiAction,
       url: this.state.apiUrl,
@@ -169,7 +171,7 @@ export default class PortfolioForm extends Component {
           banner_image: "",
           logo: "",
           editMode: false,
-          apiUrl: "https://daynebechtold.devcamp.space/portfolio/portfolio_items",
+          apiUrl: "http://localhost:8080/posts",
           apiAction: "post"
         });
 

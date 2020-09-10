@@ -20,7 +20,7 @@ export default class PortfolioDetail extends Component {
 
     getPortfolioItem() {
         axios.get(
-            `https://daynebechtold.devcamp.space/portfolio/portfolio_items/${this.props.match.params.slug}`, 
+            `http://localhost:8080/posts/${this.props.match.params.slug}`, 
             { withCredentials: true }
         ).then(response => {
             this.setState({
