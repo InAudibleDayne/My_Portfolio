@@ -20,7 +20,7 @@ export default class PortfolioForm extends Component {
       banner_image: "",
       logo: "",
       editMode: false,
-      apiUrl: "http://localhost:8080/posts/",
+      apiUrl: "http://localhost:8080/posts/post",
       //https://daynebechtold.devcamp.space/portfolio/portfolio_items
       apiAction: "post"
     };
@@ -33,6 +33,9 @@ export default class PortfolioForm extends Component {
     this.handleBannerDrop = this.handleBannerDrop.bind(this);
     this.handleLogoDrop = this.handleLogoDrop.bind(this);
     this.deleteImage = this.deleteImage.bind(this);
+    this.getLogoBase64 = this.getLogoBase64.bind(this);
+    this.getBannerBase64 = this.getBannerBase64.bind(this);
+    this.getThumbBase64 = this.getThumbBase64.bind(this);
 
     this.thumbRef = React.createRef();
     this.bannerRef = React.createRef();
@@ -85,21 +88,46 @@ export default class PortfolioForm extends Component {
 
   handleThumbDrop() {
     return {
-      addedfile: file => this.setState({ thumb_image: file })
+      addedfile: file => {this.getThumbBase64(file)}
     };
   }
 
   handleBannerDrop() {
     return {
-      addedfile: file=> this.setState({ banner_image: file })
+      addedfile: file=> {this.getBannerBase64(file)}
     }
   }
 
   handleLogoDrop() {
     return {
-      addedfile: file => this.setState({ logo: file })
+      addedfile: file => {this.getLogoBase64(file)}
     }
   }
+
+getLogoBase64(file) {
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => this.setState({
+        logo: reader.result
+    });
+    reader.onerror = error => {};
+}
+getThumbBase64(file) {
+  let reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = () => this.setState({
+      thumb_image: reader.result
+  });
+  reader.onerror = error => {};
+}    
+getBannerBase64(file) {
+  let reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = () => this.setState({
+      banner_image: reader.result
+  });
+  reader.onerror = error => {};
+}  
 
   componentConfig() {
     return {
@@ -117,27 +145,39 @@ export default class PortfolioForm extends Component {
   }
 
   buildForm() {
-    let formData = new FormData();
+    // let formData = new FormData();
 
-    formData.append("name", this.state.name);
-    formData.append("description", this.state.description);
-    formData.append("url", this.state.url);
-    formData.append("category", this.state.category);
-    formData.append("postion", this.state.position);
+    // formData.append("name", this.state.name);
+    // formData.append("description", this.state.description);
+    // formData.append("url", this.state.url);
+    // formData.append("category", this.state.category);
+    // formData.append("postion", this.state.position);
 
-    if (this.state.thumb_image) {
-      formData.append("thumb_image", this.state.thumb_image);
+    // if (this.state.thumb_image) {
+    //   formData.append("thumb_image", this.state.thumb_image);
+    // }
+
+    // if (this.state.banner_image) {
+    //   formData.append("banner_image", this.state.banner_image);
+    // }
+
+    // if (this.state.logo) {
+    //   formData.append("logo", this.state.logo);
+    // }
+
+    let myJSONRequest = {
+      "name": this.state.name,
+      "description": this.state.description,
+      "url": this.state.url,
+      "category": this.state.category,
+      "position": this.state.position,
+      "tags":"",
+      "thumb_image": this.state.thumb_image,
+      "banner_image": this.state.banner_image,
+      "logo": this.state.logo
     }
 
-    if (this.state.banner_image) {
-      formData.append("banner_image", this.state.banner_image);
-    }
-
-    if (this.state.logo) {
-      formData.append("logo", this.state.logo);
-    }
-
-    return formData;
+    return myJSONRequest;
   }
 
   handleChange(event) {
@@ -170,7 +210,7 @@ export default class PortfolioForm extends Component {
           banner_image: "",
           logo: "",
           editMode: false,
-          apiUrl: "http://localhost:8080/posts",
+          apiUrl: "http://localhost:8080/posts/post",
           apiAction: "post"
         });
 
