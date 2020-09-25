@@ -16,7 +16,7 @@ export default class PortfolioItem extends Component {
     }
 
     handleMouseLeave() {
-        this.setState({ portfolioItemClass: "image-blue-out" })
+        this.setState({ portfolioItemClass: "image-blur-out" })
     }
 
     handle
